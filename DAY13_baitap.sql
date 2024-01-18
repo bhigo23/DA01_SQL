@@ -38,9 +38,13 @@ WHERE b.liked_date IS NULL
 ORDER BY a.page_id
 
 --baitap5
-/*bài só 5 hơi khó với em, em cũng có đọc solution mà không hiểu gì. Nhưng mà em thấy tốc độ của em khá chậm, hầu hết các bài
-em không tự giải được, em phải đọc đi đọc lại solution để tìm cách. Với lại cái kỹ năng Problem Solving của em khá yếu, em nên
-làm gì để cải thiện hơn ạ ?*/
+WITH cte AS 
+(SELECT user_id	
+FROM user_actions 
+WHERE EXTRACT(month FROM event_date) IN (6,7) 
+AND EXTRACT(year FROM event_date) = 2022 
+GROUP BY user_id HAVING COUNT(DISTINCT EXTRACT(month FROM event_date)) = 2)
+SELECT 7 AS month, COUNT(*) AS number_of_user FROM cte 
 
 --baitap6
 SELECT
